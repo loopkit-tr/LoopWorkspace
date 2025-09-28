@@ -13,6 +13,7 @@ jobs:
     name: Add Identifiers
     needs: validate
     runs-on: macos-15
+    if: ${{ false }}
     steps:
       # Checks-out the repo
       - name: Checkout Repo

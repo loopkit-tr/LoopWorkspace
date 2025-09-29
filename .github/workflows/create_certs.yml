@@ -11,6 +11,8 @@ env:
   FASTLANE_KEY_ID: ${{ secrets.FASTLANE_KEY_ID }}
   FASTLANE_ISSUER_ID: ${{ secrets.FASTLANE_ISSUER_ID }}
   FASTLANE_KEY: ${{ secrets.FASTLANE_KEY }}
+  MATCH_CERTIFICATE_BASE64: ${{ secrets.MATCH_CERTIFICATE_BASE64 }}
+
 
 jobs:
   validate:
@@ -30,6 +32,8 @@ jobs:
       # Checks-out the repo
       - name: Checkout Repo
         uses: actions/checkout@v4
+      - name: Decode certificate
+        run: echo "$MATCH_CERTIFICATE_BASE64" | base64 -d > distribution.p12
       
       # Patch Fastlane Match to not print tables
       - name: Patch Match Tables

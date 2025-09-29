@@ -60,6 +60,7 @@ jobs:
           echo "Running Fastlane certs lane..."
           bundle exec fastlane certs || true # ignore and continue on errors without annotating an exit code
       - name: Check Distribution certificate and launch Nuke certificates if needed
+        if: false 
         run: bundle exec fastlane check_and_renew_certificates
         id: check_certs
 

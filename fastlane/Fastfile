@@ -54,7 +54,8 @@ platform :ios do
     match(
       type: "appstore",
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
-      readonly: true,
+      readonly: false,   # ✅ düzeltildi
+      force_for_new_certificates: false, # ✅ güvenli ekleme
       app_identifier: [
         "com.#{TEAMID}.loopkit.Loop", 
         "com.#{TEAMID}.loopkit.Loop.statuswidget", 

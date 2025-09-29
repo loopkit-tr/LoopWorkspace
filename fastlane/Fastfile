@@ -54,8 +54,7 @@ platform :ios do
     match(
       type: "appstore",
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
-      readonly: false,   # ✅ düzeltildi
-      force_for_new_certificates: false, # ✅ güvenli ekleme
+      readonly: false,
       app_identifier: [
         "com.#{TEAMID}.loopkit.Loop", 
         "com.#{TEAMID}.loopkit.Loop.statuswidget", 
@@ -64,7 +63,8 @@ platform :ios do
         "com.#{TEAMID}.loopkit.Loop.Loop-Intent-Extension",
         "com.#{TEAMID}.loopkit.Loop.LoopWidgetExtension"
       ],
-      api_key: api_key
+      api_key: api_key,
+      team_id: TEAMID   # 🔑 Individual hesap için zorunlu
     )
 
     mapping = Actions.lane_context[
@@ -147,6 +147,7 @@ platform :ios do
       skip_submission: false,
       ipa: "Loop.ipa",
       skip_waiting_for_build_processing: true,
+      team_id: TEAMID   # 🔑 ekledik
     )
   end
 
@@ -226,7 +227,8 @@ platform :ios do
         "com.#{TEAMID}.loopkit.Loop.Loop-Intent-Extension",
         "com.#{TEAMID}.loopkit.Loop.LoopWidgetExtension",
       ],
-      api_key: api_key
+      api_key: api_key,
+      team_id: TEAMID   # 🔑 ekledik
     )
   end
 
@@ -251,8 +253,8 @@ platform :ios do
       type: "appstore",
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
       app_identifier: [],
-      api_key: api_key
+      api_key: api_key,
+      team_id: TEAMID   # 🔑 ekledik
     )
-
   end
 end
